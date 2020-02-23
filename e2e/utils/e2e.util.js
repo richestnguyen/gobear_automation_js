@@ -85,6 +85,13 @@ var E2eUtil = function () {
 
     this.checkRadioButtonFunctional = async function (radioBtn) {
         await this.waitForElementPresent(radioBtn);
+        await radioBtn.click();
+        await this.waitForLoadingDone();
+        await this.radioButtonStatusShouldBe(radioBtn, true);
+    };
+
+    this.checkRadioButtonFunctionalOnMobile = async function (radioBtn) {
+        await this.waitForElementPresent(radioBtn);
         await this.scrollIntoView(radioBtn);
         await radioBtn.click();
         await this.waitForLoadingDone();

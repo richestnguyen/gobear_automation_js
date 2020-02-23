@@ -49,18 +49,18 @@ describe('Gobear Travel Search Test Mobile', () => {
         });
 
         await insuranceTravelResultPage.mobileCollapseFilterButton.click();
-        await insuranceTravelResultPage.ensurePromotionRadioButtonsFunctional();
+        await insuranceTravelResultPage.ensurePromotionRadioButtonsFunctionalOnMobile();
         await insuranceTravelResultPage.ensureInsurerCheckBoxesFunctional();
         // await insuranceTravelResultPage.ensureAllSlidersAreFunctional();
 
         await e2eUtils.scrollIntoView(insuranceTravelResultPage.mobileSortButton);
         await insuranceTravelResultPage.mobileSortButton.click();
-        await insuranceTravelResultPage.ensureSortRadioButtonsFunctional();
+        await insuranceTravelResultPage.ensureSortRadioButtonsFunctionalOnMobile();
 
         await e2eUtils.scrollIntoView(insuranceTravelResultPage.mobileDetailButton);
         await insuranceTravelResultPage.mobileDetailButton.click();
-        await insuranceTravelResultPage.ensurePolicyTypeRadioButtonsFunctional();
-        await insuranceTravelResultPage.ensureWhoGoingRadioButtonsFunctional();
+        await insuranceTravelResultPage.ensurePolicyTypeRadioButtonsFunctionalOnMobile();
+        await insuranceTravelResultPage.ensureWhoGoingRadioButtonsFunctionalOnMobile();
         await e2eUtils.checkDropdownFunctionalInMobile(
             insuranceTravelResultPage.destinationDropDown, 'Schengen');
         await insuranceTravelResultPage.ensureTravelStartDateMobileFunctional();

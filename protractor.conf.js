@@ -1,3 +1,9 @@
+var HtmlScreenshotReporter = require('protractor-jasmine2-screenshot-reporter');
+var reporter = new HtmlScreenshotReporter({
+    dest: 'target/screenshots',
+    filename: 'my-report.html'
+});
+
 exports.config = {
     directConnect: false,
     seleniumAddress: 'http://localhost:4444/wd/hub',
@@ -14,6 +20,12 @@ exports.config = {
     baseUrl: 'https://www.gobear.com/ph?x_session_type=UAT',
     framework: 'jasmine',
 
+    // Setup the report before any tests start
+    beforeLaunch: function() {
+        return new Promise(function(resolve){
+            reporter.beforeLaunch(resolve);
+        });
+    },
     onPrepare: () => {
         const SpecReporter = require('jasmine-spec-reporter').SpecReporter;
         jasmine.getEnv().addReporter(new SpecReporter({
@@ -21,19 +33,16 @@ exports.config = {
                 displayStacktrace: true
             }
         }));
+        jasmine.getEnv().addReporter(reporter);
     },
-
-    multiCapabilities: [
-        // {
-        //     browserName: 'chrome'
-        // },
-        {
-            browserName: 'chrome',
-            chromeOptions: {
-                mobileEmulation: {
-                    deviceName: 'Nexus 5'
-                }
-            }
+    // Close the report after all tests finish
+    afterLaunch: function(exitCode) {
+        return new Promise(function(resolve){
+            reporter.afterLaunch(resolve.bind(this, exitCode));
+        });
+    },
+    multiCapabilities: [{
+            browserName: 'chrome'
         }
     ],
 

@@ -59,6 +59,11 @@ const InsuranceTravelResultPage = function() {
         await e2eUtils.checkRadioButtonFunctional(this.promotionShowAllRadioButton);
     };
 
+    this.ensurePromotionRadioButtonsFunctionalOnMobile = async function () {
+        await e2eUtils.checkRadioButtonFunctionalOnMobile(this.promotionPromosOnlyRadioButton);
+        await e2eUtils.checkRadioButtonFunctionalOnMobile(this.promotionShowAllRadioButton);
+    };
+
     this.ensureInsurerCheckBoxesFunctional = async function () {
         const all = $$('.filter-detail [data-filter-by="insurerId"] .checkbox');
         await all.each(async elementFinder => {
@@ -99,9 +104,24 @@ const InsuranceTravelResultPage = function() {
         await e2eUtils.checkRadioButtonFunctional(this.sortByRatingHighToLowRadioButton);
     };
 
+    this.ensureSortRadioButtonsFunctionalOnMobile = async function () {
+        await e2eUtils.checkRadioButtonFunctionalOnMobile(this.sortByPromotionRadioButton);
+        await e2eUtils.checkRadioButtonFunctionalOnMobile(this.sortByPriceLowToHighRadioButton);
+        await e2eUtils.checkRadioButtonFunctionalOnMobile(this.sortByPriceHighToLowRadioButton);
+        await e2eUtils.checkRadioButtonFunctionalOnMobile(this.sortByScoreRadioButton);
+        await e2eUtils.checkRadioButtonFunctionalOnMobile(this.sortByInsurerAtoZNameRadioButton);
+        await e2eUtils.checkRadioButtonFunctionalOnMobile(this.sortByInsurerZtoANameRadioButton);
+        await e2eUtils.checkRadioButtonFunctionalOnMobile(this.sortByRatingHighToLowRadioButton);
+    };
+
     this.ensurePolicyTypeRadioButtonsFunctional = async function () {
         await e2eUtils.checkRadioButtonFunctional(this.singleTripRadioButton);
         await e2eUtils.checkRadioButtonFunctional(this.annualTripRadioButton);
+    };
+
+    this.ensurePolicyTypeRadioButtonsFunctionalOnMobile = async function () {
+        await e2eUtils.checkRadioButtonFunctionalOnMobile(this.singleTripRadioButton);
+        await e2eUtils.checkRadioButtonFunctionalOnMobile(this.annualTripRadioButton);
     };
 
     this.ensureTravelStartDateFunctional = async function () {
@@ -131,6 +151,15 @@ const InsuranceTravelResultPage = function() {
         await e2eUtils.checkRadioButtonFunctional(this.threePersonsRadioButton);
         await e2eUtils.checkRadioButtonFunctional(this.fourPersonsRadioButton);
         await e2eUtils.checkRadioButtonFunctional(this.fivePersonsRadioButton);
+    };
+
+    this.ensureWhoGoingRadioButtonsFunctionalOnMobile = async function () {
+        await e2eUtils.checkRadioButtonFunctionalOnMobile(this.justMeRadioButton);
+        await e2eUtils.checkRadioButtonFunctionalOnMobile(this.myFamilyRadioButton);
+        await e2eUtils.checkRadioButtonFunctionalOnMobile(this.twoPersonsRadioButton);
+        await e2eUtils.checkRadioButtonFunctionalOnMobile(this.threePersonsRadioButton);
+        await e2eUtils.checkRadioButtonFunctionalOnMobile(this.fourPersonsRadioButton);
+        await e2eUtils.checkRadioButtonFunctionalOnMobile(this.fivePersonsRadioButton);
     };
 
     this.ensureDestinationDropdownFunctional = async function (newitem) {
