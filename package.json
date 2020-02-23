@@ -1,0 +1,34 @@
+{
+  "name": "gobear_automation_js",
+  "version": "1.0.0",
+  "description": "GoBear Software Engineer in Test assessment",
+  "engines": {
+    "node": "11.14.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/richestnguyen/gobear_automation_js.git"
+  },
+  "scripts": {
+    "prepare": "node_modules/.bin/webdriver-manager update",
+    "update": "node_modules/.bin/webdriver-manager update",
+    "test": "protractor protractor.conf.js",
+    "test-mobile": "protractor protractor-mobile-emu.conf.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "protractor": "5.4.2",
+    "chance": "1.0.16",
+    "jasmine-spec-reporter": "4.2.1",
+    "protractor-flake": "4.0.0"
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "6.24.1",
+    "babel-register": "6.24.1",
+    "html-dnd": "1.2.1",
+    "moment": "2.24.0",
+    "protractor-helper": "4.0.12"
+  }
+}
