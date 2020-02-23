@@ -38,7 +38,7 @@ The plan includes:
 The tool: 
 ```
 Selenium based tool, helps automation team build cross-environment automated regression test suites.
-I would suggests to use Protractor (an end-to-end test framework)
+I would suggest to use Protractor (an end-to-end test framework)
 
 Protractor runs tests against your application running in a real browser, interacting with it as a user would.
 ```
