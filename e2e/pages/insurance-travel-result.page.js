@@ -81,7 +81,7 @@ const InsuranceTravelResultPage = function() {
             await browser.actions().dragAndDrop(minElementToCheck, {x: 20}).perform();
             await browser.actions().dragAndDrop(maxElementToCheck, {x: -20}).perform();
 
-            console.log('Drag and drop function is now worked as expected due to chrome drive bug. ' +
+            console.log('Drag and drop function is not worked as expected due to chrome drive bug. ' +
                 'see: https://bugs.chromium.org/p/chromedriver/issues/detail?id=841');
 
             if(await minElementToCheck.getAttribute('aria-valuenow') === defaultMinValue) {
