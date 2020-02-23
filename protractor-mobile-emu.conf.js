@@ -4,11 +4,7 @@ exports.config = {
     allScriptsTimeout: 120000,
     getPageTimeout: 180000,
     maxSessions: 1,
-    specs: ['./e2e/specs/*.spec.js'],
-    suites: {
-        smoke: ['e2e/tests/smoke/**/*.ts'],
-        full: ['./e2e/tests/**/*.spec.ts']
-    },
+    specs: ['./e2e/specs/mobile/*.spec.js'],
     baseUrl: 'https://www.gobear.com/ph?x_session_type=UAT',
     framework: 'jasmine',
 

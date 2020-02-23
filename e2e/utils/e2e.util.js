@@ -5,13 +5,17 @@ var E2eUtil = function () {
         await ele.click();
     };
 
+    this.scrollIntoView = async function (elm) {
+        await browser.executeScript("arguments[0].scrollIntoView();", elm.getWebElement());
+    };
+
     this.waitForElementPresent = async function (marker, timeout = 10000) {
+        await browser.sleep(1000);
         await browser.driver.wait(protractor.ExpectedConditions.presenceOf(marker), timeout);
     };
 
     this.getElementValue = async function (ele) {
         return browser.executeScript('return arguments[0].value', ele);
-
     };
 
     this.waitForLoadingDone = async function () {
@@ -59,8 +63,19 @@ var E2eUtil = function () {
         await dayElement.click();
     };
 
-    this.setDateFromDatePickerMobile = async function (datePickerElement, fromDate, toDate) {
+    this.setDateFromDatePickerMobile = async function (datePickerElement, date) {
+        let dd = date.getDate();
+        if (dd < 10) {
+            dd = '0' + dd
+        }
+        let mm = date.getMonth();
+        if (mm < 10) {
+            mm = '0' + (mm + 1)
+        }
+        const yyyy = date.getFullYear();
 
+        const changedDate = yyyy.toString() + '-' + mm.toString() + '-' + dd.toString();
+        await browser.executeScript('return arguments[0].value = "' + changedDate +'"', datePickerElement.$('input'));
     };
 
     this.radioButtonStatusShouldBe = async function (radioBtn, status) {
@@ -70,9 +85,26 @@ var E2eUtil = function () {
 
     this.checkRadioButtonFunctional = async function (radioBtn) {
         await this.waitForElementPresent(radioBtn);
+        await this.scrollIntoView(radioBtn);
         await radioBtn.click();
         await this.waitForLoadingDone();
         await this.radioButtonStatusShouldBe(radioBtn, true);
+    };
+
+    this.checkDropdownFunctional = async function (dropdown, newItem) {
+        const orgValue = await this.getElementValue(dropdown.$('select'));
+        await this.waitForElementPresent(dropdown);
+        await this.scrollIntoView(dropdown);
+        await this.selectDropDownListItem(dropdown, newItem);
+        await expect(await this.getElementValue(dropdown.$('select'))).not.toEqual(orgValue);
+    };
+
+    this.checkDropdownFunctionalInMobile = async function (dropdown, newItem) {
+        const orgValue = await this.getElementValue(dropdown.$('select'));
+        await this.waitForElementPresent(dropdown);
+        await this.scrollIntoView(dropdown);
+        await this.selectDropDownListItemInMobile(dropdown, newItem);
+        await expect(await this.getElementValue(dropdown.$('select'))).not.toEqual(orgValue);
     };
 
     this.checkBoxShouldBe = async function (checkBox, checked) {

@@ -5,8 +5,9 @@ exports.config = {
     allScriptsTimeout: 120000,
     getPageTimeout: 180000,
     maxSessions: 1,
-    specs: ['./e2e/specs/*.spec.js'],
+    specs: ['./e2e/specs/desktop/*.spec.js'],
     suites: {
+        //define test suite here
         smoke: ['e2e/tests/smoke/**/*.ts'],
         full: ['./e2e/tests/**/*.spec.ts']
     },

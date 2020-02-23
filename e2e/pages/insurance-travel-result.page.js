@@ -7,7 +7,8 @@ const InsuranceTravelResultPage = function() {
     this.sortLeftMenu = $('.sort-detail');
     this.detailsLeftMenu = $('.edit-detail');
     this.travelCardList = $$('#travel-quote-list .card-full');
-        this.clearAllButton = $('.filter-detail .clear-all');
+
+    this.clearAllButton = $('.filter-detail .clear-all');
 
     //PROMOTIONS
     this.promotionShowAllRadioButton =
@@ -45,7 +46,13 @@ const InsuranceTravelResultPage = function() {
 
     //TRAVEL START DATE
     this.travelStartDatePicker = $('[name="dates-startdate"]');
+    this.mobileTravelStartDate = $('.date-from');
 
+    //MOBILE
+    this.mobileSlidebarControlButton = $('.sidebar-control-btn');
+    this.mobileCollapseFilterButton = $('#collapseFilterBtn');
+    this.mobileSortButton = $('#headingTwo');
+    this.mobileDetailButton = $('#detailsHeading');
 
     this.ensurePromotionRadioButtonsFunctional = async function () {
         await e2eUtils.checkRadioButtonFunctional(this.promotionPromosOnlyRadioButton);
@@ -109,6 +116,14 @@ const InsuranceTravelResultPage = function() {
         await expect(e2eUtils.getElementValue(this.travelStartDatePicker)).not.toEqual(originalDate);
     };
 
+    this.ensureTravelStartDateMobileFunctional = async function () {
+        //[TODO] Shouldn't do this since it's not a user action
+        // Need find another way to check
+        const originalDate = await e2eUtils.getElementValue(this.mobileTravelStartDate.$('input'));
+        await e2eUtils.setDateFromDatePickerMobile(this.mobileTravelStartDate, new Date('12/31/2099'));
+        await expect(await e2eUtils.getElementValue(this.mobileTravelStartDate.$('input'))).not.toEqual(originalDate)
+    };
+
     this.ensureWhoGoingRadioButtonsFunctional = async function () {
         await e2eUtils.checkRadioButtonFunctional(this.justMeRadioButton);
         await e2eUtils.checkRadioButtonFunctional(this.myFamilyRadioButton);
@@ -116,6 +131,10 @@ const InsuranceTravelResultPage = function() {
         await e2eUtils.checkRadioButtonFunctional(this.threePersonsRadioButton);
         await e2eUtils.checkRadioButtonFunctional(this.fourPersonsRadioButton);
         await e2eUtils.checkRadioButtonFunctional(this.fivePersonsRadioButton);
+    };
+
+    this.ensureDestinationDropdownFunctional = async function (newitem) {
+        await e2eUtils.checkDropdownFunctional(this.destinationDropDown, newitem);
     };
 
     this.ensureLeftMenuAreFunctional = async function () {
